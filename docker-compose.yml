@@ -1,0 +1,26 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0.16
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --innodb-large-prefix=true --innodb-file-format=Barracuda
+    environment:
+      MYSQL_ROOT_PASSWORD: pass0000
+      MYSQL_DATABASE: mykinso_development
+      MYSQL_USER: root
+      MYSQL_PASSWORD: pass0000
+    volumes:
+      - ./tmp/db:/var/lib/mysql
+    ports:
+      - "3344:3306"
+  web:
+    build: .
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/system
+    ports:
+      - "3210:3000"
+    environment:
+      TZ: Asia/Tokyo
+    depends_on:
+      - db
