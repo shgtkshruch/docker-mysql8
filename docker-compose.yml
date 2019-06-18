@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-    image: mysql:8.0.16
+    image: mysql:5.7.26
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --innodb-large-prefix=true --innodb-file-format=Barracuda
     environment:
       MYSQL_ROOT_PASSWORD: pass0000
